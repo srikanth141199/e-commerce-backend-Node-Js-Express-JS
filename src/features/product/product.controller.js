@@ -32,4 +32,18 @@ export default class ProductController{
         }
     }
 
+    filterProducts(req, res){
+        const minPrice = req.query.minPrice;
+        const maxPrice = req.query.maxPrice;
+        const category = req.query.category;
+
+        const result = ProductModel.filter(minPrice, maxPrice, category);
+        if(!result){
+            res.status(404).send('No products found')
+        }
+        else{
+            res.status(200).send(result);
+        }
+    }
+
 }
