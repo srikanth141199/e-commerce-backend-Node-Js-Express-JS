@@ -20,6 +20,10 @@ export default class UserModel {
     );
     return user;
   }
+
+  static getAll(){
+    return users;
+  }
 }
 
 var users = [
