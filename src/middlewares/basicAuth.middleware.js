@@ -27,6 +27,7 @@ const basicAuthorizer = (req, res, next) => {
   else{
     return res.status(401).send("Incorrect Credentials");
   }
+  //in postman go to authorization fill username, password
 };
 
 export default basicAuthorizer;
