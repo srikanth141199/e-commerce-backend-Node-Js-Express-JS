@@ -1,0 +1,6 @@
+Sat Mar 02 2024 21:12:44 GMT+0530 (India Standard Time). Log Data: [object Object]
+ Sat Mar 02 2024 21:19:42 GMT+0530 (India Standard Time)-/api/users/signIn-{"email":"lekha123@ecom.com","password":"Sri"}
+ Sat Mar 02 2024 21:19:45 GMT+0530 (India Standard Time)-/api/users/signUp-{"name":"Lekha","email":"lekha123@ecom.com","password":"Sri","type":"seller"}
+ Sat Mar 02 2024 21:19:47 GMT+0530 (India Standard Time)-/api/users/signIn-{"email":"lekha123@ecom.com","password":"Sri"}
+ Sat Mar 02 2024 21:20:29 GMT+0530 (India Standard Time)-/api/products-{"email":"srikanth@ecom.com","password":"Sri"}
+ Sat Mar 02 2024 21:22:48 GMT+0530 (India Standard Time)-/api/users/signUp-{"name":"Lekha","email":"lekha123@ecom.com","password":"Sri","type":"seller"}
