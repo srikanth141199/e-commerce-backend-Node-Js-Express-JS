@@ -1,29 +1,24 @@
+**Below is an example of how swagger can be initiated in version 2.0**
+
 {
-  "openapi": "3.0.0",
+  "swagger": "2.0",
   "info": {
     "version": "1.0.0",
     "description": "api for E-commerce Application",
     "title": "E-commerce API"
   },
-  "servers": [
-    {
-      "url": "http://localhost:3200"
-    }
-  ],
-  "components": {
-    "securitySchemes": {
-      "JWT": {
-        "in": "header",
-        "name": "Authorization",
-        "type": "apiKey"
-      }
+  "host": "localhost:3200",
+  "securityDefinitions":{
+    "JWT":{
+        "in":"header",
+        "name":"Authorization",
+        "type":"apiKey"
     }
   },
-
   "paths": {
     "/api/products": {
       "get": {
-        "tags": ["Products"],
+        "tags":["Products"],
         "summary": "Get Products",
         "description": "User will get all products",
         "security": [{ "JWT": {} }],
@@ -39,26 +34,27 @@
     },
     "/api/users/signIn": {
       "post": {
-        "tags": ["Users"],
+        "tags":["Users"],
         "summary": "Login",
         "description": "This is for User Login to send Token",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "email": {
-                    "type": "string"
-                  },
-                  "password": {
-                    "type": "string"
-                  }
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "User Credentials",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
                 }
               }
             }
           }
-        },
+        ],
 
         "responses": {
           "200": {
