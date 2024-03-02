@@ -34,6 +34,10 @@ server.get('/', (req, res)=>{
     res.send("Welcome to Ecommerce APIs");
 });
 
+//when any of the above can't handle the request below will be executed and display customized message.
+server.use((req, res) => {
+    res.status(404).send("API not found")
+})
 // 4. Specify port.
 server.listen(3200,()=>{
     console.log("Server is running at 3200");
