@@ -3,6 +3,7 @@ import express from 'express';
 // import bodyParser from 'body-parser';
 import productRouter from './src/features/product/product.routes.js';
 import userRouter from './src/features/user/user.routes.js';
+import cartRouter from './src/features/cartItems/cartItems.routes.js';
 
 //middlewares
 import basicAuthorizer from './src/middlewares/basicAuth.middleware.js';
@@ -19,6 +20,7 @@ server.use(express.json());
 //server.use("/api/products",basicAuthorizer, productRouter);
 server.use("/api/products",jwtAuth, productRouter);
 server.use("/api/users", userRouter);
+server.use("/api/cartItems", jwtAuth, cartRouter);
 
 
 // 3. Default request handler
