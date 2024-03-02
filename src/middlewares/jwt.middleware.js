@@ -4,7 +4,7 @@ const jwtAuth = (req, res, next) => {
   //Read the Token
   //console.log(req.headers);
   const token = req.headers["authorization"];
-  console.log('Token : ',token);
+  //console.log('Token : ',token);
 
   //Check if no Token
   if (!token) {
@@ -16,7 +16,7 @@ const jwtAuth = (req, res, next) => {
     const payload = jwt.verify(token, "tN3NBpi4uWpGa93C6pWSI35p0bajNcUm");
     //console.log(payload);
   } catch (error) {
-    console.log("error : ", error);
+    //console.log("error : ", error);
     return res.status(401).send("Unauthorized");
   }
 

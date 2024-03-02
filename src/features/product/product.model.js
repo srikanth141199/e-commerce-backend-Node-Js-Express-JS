@@ -1,3 +1,5 @@
+import UserModel from "../user/user.model.js";
+
 export default class ProductModel {
   constructor(id, name, desc, price, imageUrl, category, sizes) {
     this.id = id;
@@ -24,9 +26,43 @@ export default class ProductModel {
     return products;
   }
 
-  static filter(minPrice, maxPrice, category){
-    const result = products.filter((product) => (!minPrice || product.price >= minPrice) && (!maxPrice || product.price <= maxPrice) && (!category || product.category == category));
+  static filter(minPrice, maxPrice, category) {
+    const result = products.filter(
+      (product) =>
+        (!minPrice || product.price >= minPrice) &&
+        (!maxPrice || product.price <= maxPrice) &&
+        (!category || product.category == category)
+    );
     return result;
+  }
+
+  static rateProduct(userID, productID, rating) {
+    const user = UserModel.getAll().find((user) => user.id == userID);
+    if (!user) {
+      return "User not Found";
+    }
+
+    const product = products.find((product) => product.id == productID);
+    if (!product) {
+      return "Product not found";
+    }
+
+    if (!product.rating) {
+      //no rating is there for the product
+      product.rating = [];
+      product.rating.push({ userId: userID, rating: rating });
+    } else {
+      const existingRating = product.rating.findIndex(
+        (rate) => rate.userID == userID
+      );
+      if (existingRating >= 0) {
+        //if the existing rating given by a user needs to be updated
+        product.rating[existingRating] = { userID: userID, rating: rating };
+      } else {
+        //if no existing Rating by the user
+        product.rating.push({ userID: userID, rating: rating });
+      }
+    }
   }
 }
 
