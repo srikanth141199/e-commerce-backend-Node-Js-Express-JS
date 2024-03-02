@@ -1,3 +1,4 @@
+import winston from "winston";
 import UserModel from "../user/user.model.js";
 
 export default class ProductModel {
@@ -39,12 +40,13 @@ export default class ProductModel {
   static rateProduct(userID, productID, rating) {
     const user = UserModel.getAll().find((user) => user.id == userID);
     if (!user) {
-      return "User not Found";
+      //return "User not Found";
+      throw new Error("User not Found");
     }
 
     const product = products.find((product) => product.id == productID);
     if (!product) {
-      return "Product not found";
+      throw new Error("Product not found");
     }
 
     if (!product.rating) {
