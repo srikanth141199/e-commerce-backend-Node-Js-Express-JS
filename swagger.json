@@ -1,45 +1,68 @@
 {
-    "swagger" : "2.0",
-    "inf0":{
-        "version":"1.0.0",
-        "description":"api for E-commerce Application",
-        "title":"E-commerce API"
-    },
-    "host":"http://locolhost3200",
-    "paths":{
-        "/api/users/signIn":{
-            "post":{
-                "summary":"Login",
-                "description":"This is for User Login to send Token",
-                "parameters":[
-                    {
-                        "in":"body",
-                        "name":"body",
-                        "description":"User Credentials",
-                        "schema":{
-                            "type":"object",
-                            "properties":{
-                                "email":{
-                                    "type": "string"
-                                },
-                                "password":{
-                                    "type":"string"
-                                }                               
-                            }
-                        }
-                    }
-                ],
-
-                "responses":{
-                    "200":{
-                        "description":"OK"
-                    },
-                    "400":{
-                        "description":"Incorrect Credentials"
-                    }
-                }
-            }
-        }
-
+  "swagger": "2.0",
+  "inf0": {
+    "version": "1.0.0",
+    "description": "api for E-commerce Application",
+    "title": "E-commerce API"
+  },
+  "host": "localhost:3200",
+  "securityDefinitions":{
+    "JWT":{
+        "in":"header",
+        "name":"Authorization",
+        "type":"apiKey"
     }
+  },
+  "paths": {
+    "/api/products": {
+      "get": {
+        "tags":["Products"],
+        "summary": "Get Products",
+        "description": "User will get all products",
+        "security": [{ "JWT": {} }],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/users/signIn": {
+      "post": {
+        "tags":["Users"],
+        "summary": "Login",
+        "description": "This is for User Login to send Token",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "User Credentials",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect Credentials"
+          }
+        }
+      }
+    }
+  }
 }
