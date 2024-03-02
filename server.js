@@ -1,6 +1,7 @@
 // 1. Import express
 import express from 'express';
 import swagger from 'swagger-ui-express';
+import cors from 'cors';
 
 // import bodyParser from 'body-parser';
 import productRouter from './src/features/product/product.routes.js';
@@ -17,17 +18,23 @@ import apiDocs from './swagger.json' assert {type:'json'};
 const server = express();
 
 //CORS Policy configuration
-server.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin","http://localhost:5500");
-    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    res.header("Access-Control-Allow-Method", "*");
-    //return OK for preflight requests
-    if(req.method == 'OPTIONS'){
-        return res.sendStatus(200);
-    }
+var corsOptions = {
+    origin : "http://localhost:5500",
+    allowedHeaders : "*"
+}
+server.use(cors(corsOptions));
 
-    next();
-})
+// server.use((req, res, next) => {
+//     res.header("Access-Control-Allow-Origin","http://localhost:5500");
+//     res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+//     res.header("Access-Control-Allow-Method", "*");
+//     //return OK for preflight requests
+//     if(req.method == 'OPTIONS'){
+//         return res.sendStatus(200);
+//     }
+
+//     next();
+// })
 //in above case where we mentioned 5500, this allows all thw api's to be accessible for domain 5500, if we want to allow for every one we can replace it with "*".
 
 server.use(express.json());
