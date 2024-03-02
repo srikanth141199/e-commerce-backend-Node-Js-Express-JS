@@ -1,0 +1,45 @@
+{
+    "swagger" : "2.0",
+    "inf0":{
+        "version":"1.0.0",
+        "description":"api for E-commerce Application",
+        "title":"E-commerce API"
+    },
+    "host":"http://locolhost3200",
+    "paths":{
+        "/api/users/signIn":{
+            "post":{
+                "summary":"Login",
+                "description":"This is for User Login to send Token",
+                "parameters":[
+                    {
+                        "in":"body",
+                        "name":"body",
+                        "description":"User Credentials",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "email":{
+                                    "type": "string"
+                                },
+                                "password":{
+                                    "type":"string"
+                                }                               
+                            }
+                        }
+                    }
+                ],
+
+                "responses":{
+                    "200":{
+                        "description":"OK"
+                    },
+                    "400":{
+                        "description":"Incorrect Credentials"
+                    }
+                }
+            }
+        }
+
+    }
+}
