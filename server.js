@@ -57,6 +57,12 @@ server.get('/', (req, res)=>{
     res.send("Welcome to Ecommerce APIs");
 });
 
+//Application level Error Handler
+server.use((err, req, res, next) => {
+    console.log(err);
+    res.status(503).send("Something went wrong, please try again");
+} )
+
 //when any of the above can't handle the request below will be executed and display customized message.
 server.use((req, res) => {
     res.status(404).send("API not found")
