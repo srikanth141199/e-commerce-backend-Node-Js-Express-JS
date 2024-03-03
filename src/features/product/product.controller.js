@@ -42,14 +42,20 @@ export default class ProductController {
   }
 
   rateProduct(req, res) {
-    const userID = req.query.userID;
-    const productID = req.query.productID;
-    const rating = req.query.rating;
+    try {
+      const userID = req.query.userID;
+      const productID = req.query.productID;
+      const rating = req.query.rating;
+  
+      try{ProductModel.rateProduct(userID, productID, rating);}
+      catch(err){return res.status(400).send(err.message);}
+  
+      return res.status(201).send("Rating has been added");
+    } catch (error) {
+      //console.log("This is inside try catch");
+      next()
+    }
 
-    try{ProductModel.rateProduct(userID, productID, rating);}
-    catch(err){return res.status(400).send(err.message);}
-
-    return res.status(201).send("Rating has been added");
     // if(error){
     //     return res.status(400).send(error);
     // }

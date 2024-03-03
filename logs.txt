@@ -12,3 +12,15 @@
 {"level":"info","message":"/api/products-{\"email\":\"srikanth@ecom.com\",\"password\":\"Sri\"}","service":"request-logging"}
 {"level":"info","message":"/api/products/filter?minPrice=20-{}","service":"request-logging"}
 {"level":"info","message":"/api/products/filter?minPrice=20-{}","service":"request-logging"}
+{"level":"info","message":"/api/users/signUp-{\"name\":\"Lekha\",\"email\":\"lekha123@ecom.com\",\"password\":\"Sri\",\"type\":\"seller\"}","service":"request-logging"}
+{"level":"info","message":"/api/products/rate?userID=2&productID=356&rating=1.75-{}","service":"request-logging"}
+{"level":"info","message":"/api/users/signUp-{\"name\":\"Lekha\",\"email\":\"lekha123@ecom.com\",\"password\":\"Sri\",\"type\":\"seller\"}","service":"request-logging"}
+{"level":"info","message":"/api/products/rate?userID=2&productID=356&rating=1.75-{}","service":"request-logging"}
+{"level":"info","message":"/api/products/rate?userID=2&productID=356&rating=1.75-{}","service":"request-logging"}
+{"level":"info","message":"/api/users/signUp-{\"name\":\"Lekha\",\"email\":\"lekha123@ecom.com\",\"password\":\"Sri\",\"type\":\"seller\"}","service":"request-logging"}
+{"level":"info","message":"/api/products/rate?userID=2&productID=356&rating=1.75-{}","service":"request-logging"}
+{"level":"info","message":"/api/users/signUp-{\"name\":\"Lekha\",\"email\":\"lekha123@ecom.com\",\"password\":\"Sri\",\"type\":\"seller\"}","service":"request-logging"}
+{"level":"info","message":"/api/products/rate?userID=2&productID=356&rating=1.75-{}","service":"request-logging"}
+{"level":"info","message":"/api/users/signUp-{\"name\":\"Lekha\",\"email\":\"lekha123@ecom.com\",\"password\":\"Sri\",\"type\":\"seller\"}","service":"request-logging"}
+{"level":"info","message":"/api/products/rate?userID=2&productID=356&rating=1.75-{}","service":"request-logging"}
+{"level":"info","message":"/api/products/rate?userID=2&productID=3&rating=1.75-{}","service":"request-logging"}

@@ -14,6 +14,7 @@ import jwtAuth from './src/middlewares/jwt.middleware.js';
 import loggerMiddleware from './src/middlewares/logger.middleware.js';
 
 import apiDocs from './swagger.json' assert {type:'json'};
+import { ApplicationError } from './src/error-handler/applicationError.js';
 
 // 2. Create Server
 const server = express();
@@ -60,7 +61,10 @@ server.get('/', (req, res)=>{
 //Application level Error Handler
 server.use((err, req, res, next) => {
     console.log(err);
-    res.status(503).send("Something went wrong, please try again");
+    if( err instanceof ApplicationError){
+        res.status(err.code).send(err.message);
+    }
+    res.status(500).send("Something went wrong, please try again");
 } )
 
 //when any of the above can't handle the request below will be executed and display customized message.
