@@ -15,7 +15,7 @@ import loggerMiddleware from './src/middlewares/logger.middleware.js';
 
 import apiDocs from './swagger.json' assert {type:'json'};
 import { ApplicationError } from './src/error-handler/applicationError.js';
-import connectToMongDB from './src/config/mongodb.js';
+import {connectToMongDB, getDB} from './src/config/mongodb.js';
 
 // 2. Create Server
 const server = express();
