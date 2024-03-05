@@ -33,3 +33,4 @@
 {"level":"info","message":"/api/users/signUp-{\"name\":\"Lekha\",\"email\":\"lekha123@ecom.com\",\"password\":\"Sri\",\"type\":\"seller\"}","service":"request-logging"}
 {"level":"info","message":"/api/users/signUp-{\"name\":\"Lekha\",\"email\":\"lekha123@ecom.com\",\"password\":\"Sri\",\"type\":\"seller\"}","service":"request-logging"}
 {"level":"info","message":"/api/users/signUp-{\"name\":\"Lekha\",\"email\":\"lekha123@ecom.com\",\"password\":\"Sri\",\"type\":\"seller\"}","service":"request-logging"}
+{"level":"info","message":"/api/users/signUp-{\"name\":\"Lekha\",\"email\":\"lekha123@ecom.com\",\"password\":\"Sri\",\"type\":\"seller\"}","service":"request-logging"}
