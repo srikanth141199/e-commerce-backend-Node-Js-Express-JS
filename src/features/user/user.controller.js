@@ -39,7 +39,7 @@ export default class UserController {
         //secret key is a random key copied from random key generate website
         const token = jwt.sign(
           { userID: result.id, email: result.email },
-          "tN3NBpi4uWpGa93C6pWSI35p0bajNcUm",
+          process.env.JWT_SECRET,
           {
             expiresIn: "1h",
           }
