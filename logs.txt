@@ -39,3 +39,4 @@
 {"level":"info","message":"/api/users/signUp-{\"name\":\"Surya\",\"email\":\"surya@ecom.com\",\"password\":\"Surya\",\"type\":\"customer\"}","service":"request-logging"}
 {"level":"info","message":"/api/users/signUp-{\"name\":\"Surya\",\"email\":\"surya@ecom.com\",\"password\":\"Surya\",\"type\":\"customer\"}","service":"request-logging"}
 {"level":"info","message":"/api/users/signUp-{\"name\":\"Subbu\",\"email\":\"subbu@ecom.com\",\"password\":\"subbu\",\"type\":\"customer\"}","service":"request-logging"}
+{"level":"info","message":"/api/users/signUp-{\"name\":\"Ram\",\"email\":\"ram@ecom.com\",\"password\":\"ram\",\"type\":\"seller\"}","service":"request-logging"}
