@@ -22,10 +22,15 @@ class UserRepository{
       }
 
     async signInn(email, password) {
-        const user = users.find(
-          (user) => user.email == email && user.password == password
-        );
-        return user;
+
+        try {
+            const db = getDB();
+            const collection = db.collection("users");
+            return await collection.findOne({email, password});
+        } catch (error) {
+            console.log(error);
+            throw new ApplicationError("Something went wrong with SignInn", 500)
+        }
       }
 }
 
