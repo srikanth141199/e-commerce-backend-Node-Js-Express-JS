@@ -22,8 +22,8 @@ export default class UserController {
     }
   }
 
-  signIn(req, res) {
-    const result = this.userRepository.signInn(req.body.email, req.body.password);
+  async signIn(req, res) {
+    const result = await this.userRepository.signInn(req.body.email, req.body.password);
     if (!result) {
       return res.status(400).send("Incorrect credentials");
     } else {
