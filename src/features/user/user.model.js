@@ -10,30 +10,30 @@ export default class UserModel {
     this._id = id;
   }
 
-  static async SignUp(name, email, password, type) {
+  // static async SignUp(name, email, password, type) {
 
-    try {
-      const db = getDB();
-      const collection = db.collection("users");
-      const newUser = new UserModel(name, email, password, type);
-      await collection.insertOne(newUser);
-      return newUser;
-    } catch (error) {
-      throw new ApplicationError("Something went wrong", 500);
-    }
+  //   try {
+  //     const db = getDB();
+  //     const collection = db.collection("users");
+  //     const newUser = new UserModel(name, email, password, type);
+  //     await collection.insertOne(newUser);
+  //     return newUser;
+  //   } catch (error) {
+  //     throw new ApplicationError("Something went wrong", 500);
+  //   }
     
 
-    //const newUser = new UserModel(name, email, password, type);
-    // newUser.id = users.length + 1;
-    // users.push(newUser);
-  }
+  //   //const newUser = new UserModel(name, email, password, type);
+  //   // newUser.id = users.length + 1;
+  //   // users.push(newUser);
+  // }
 
-  static SignInn(email, password) {
-    const user = users.find(
-      (user) => user.email == email && user.password == password
-    );
-    return user;
-  }
+  // static SignInn(email, password) {
+  //   const user = users.find(
+  //     (user) => user.email == email && user.password == password
+  //   );
+  //   return user;
+  // }
 
   static getAll(){
     return users;

@@ -34,3 +34,7 @@
 {"level":"info","message":"/api/users/signUp-{\"name\":\"Lekha\",\"email\":\"lekha123@ecom.com\",\"password\":\"Sri\",\"type\":\"seller\"}","service":"request-logging"}
 {"level":"info","message":"/api/users/signUp-{\"name\":\"Lekha\",\"email\":\"lekha123@ecom.com\",\"password\":\"Sri\",\"type\":\"seller\"}","service":"request-logging"}
 {"level":"info","message":"/api/users/signUp-{\"name\":\"Lekha\",\"email\":\"lekha123@ecom.com\",\"password\":\"Sri\",\"type\":\"seller\"}","service":"request-logging"}
+{"level":"info","message":"/api/users/signUp-{\"name\":\"Lekha\",\"email\":\"lekha123@ecom.com\",\"password\":\"Sri\",\"type\":\"seller\"}","service":"request-logging"}
+{"level":"info","message":"/api/users/signUp-{\"name\":\"Surya\",\"email\":\"surya@ecom.com\",\"password\":\"Surya\",\"type\":\"customer\"}","service":"request-logging"}
+{"level":"info","message":"/api/users/signUp-{\"name\":\"Surya\",\"email\":\"surya@ecom.com\",\"password\":\"Surya\",\"type\":\"customer\"}","service":"request-logging"}
+{"level":"info","message":"/api/users/signUp-{\"name\":\"Surya\",\"email\":\"surya@ecom.com\",\"password\":\"Surya\",\"type\":\"customer\"}","service":"request-logging"}
