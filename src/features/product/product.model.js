@@ -12,6 +12,7 @@ export default class ProductModel {
     this.sizes = sizes;
   }
 
+  //below code is moved to repository file as per repository model
   // static add(product) {
   //   product.id = products.length + 1;
   //   products.push(product);

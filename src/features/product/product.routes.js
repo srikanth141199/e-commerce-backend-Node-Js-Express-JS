@@ -13,7 +13,7 @@ const productController = new ProductController();
 // localhost/api/products
 
 //localhost:3200/api/products/filter?minPrice=10&maxPrice=25&category=Category2
-productRouter.get('/filter', productController.filterProducts);
+productRouter.get('/filter', (req, res) => {productController.filterProducts(req, res)});
 
 productRouter.get("/", (req, res) => {productController.getAllProducts(req, res)});
 

@@ -52,3 +52,6 @@
 {"level":"info","message":"/api/products/65eaef245d24481ce74b03dc-{}","service":"request-logging"}
 {"level":"info","message":"/api/products/65eaef245d24481ce74b03dc-{}","service":"request-logging"}
 {"level":"info","message":"/api/products-{}","service":"request-logging"}
+{"level":"info","message":"/api/products/filter?minPrice=20000&maxPrice=100000000000&category=phone-{}","service":"request-logging"}
+{"level":"info","message":"/api/products/filter?minPrice=20000&maxPrice=100000000000&category=phone-{}","service":"request-logging"}
+{"level":"info","message":"/api/products/filter?minPrice=20000&maxPrice=100000000000&category=phone-{}","service":"request-logging"}
