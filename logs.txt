@@ -65,3 +65,16 @@
 {"level":"info","message":"/api/products-{}","service":"request-logging"}
 {"level":"info","message":"/api/products-{}","service":"request-logging"}
 {"level":"info","message":"/api/products/filter?minPrice=20000&maxPrice=90000&category=phones-{}","service":"request-logging"}
+{"level":"info","message":"/api/products/filter?minPrice=20000&maxPrice=90000&category=phones-{}","service":"request-logging"}
+{"level":"info","message":"/api/products/filter-{}","service":"request-logging"}
+{"level":"info","message":"/api/products/filter?minPrice=20000-{}","service":"request-logging"}
+{"level":"info","message":"/api/products/rate?userID=2&productID=65eaef245d24481ce74b03dc&rating=4.5-{}","service":"request-logging"}
+{"level":"info","message":"/api/products/rate?userID=2&productID=65eaef245d24481ce74b03dc&rating=4.5-{}","service":"request-logging"}
+{"level":"info","message":"/api/products/rate?userID=2&productID=65eaef245d24481ce74b03dc&rating=4.5-{}","service":"request-logging"}
+{"level":"info","message":"/api/products/rate?productID=65eaefb3fc40f19b87990530&rating=4-{}","service":"request-logging"}
+{"level":"info","message":"/api/products/rate?productID=65eaefb3fc40f19b87990530&rating=4-{}","service":"request-logging"}
+{"level":"info","message":"/api/products/rate?productID=65eaefb3fc40f19b87990530&rating=4-{}","service":"request-logging"}
+{"level":"info","message":"/api/products/rate?productID=65eaefb3fc40f19b87990530&rating=3-{}","service":"request-logging"}
+{"level":"info","message":"/api/products/rate?productID=65eaefb3fc40f19b87990530&rating=1-{}","service":"request-logging"}
+{"level":"info","message":"/api/products/rate?productID=65eaefb3fc40f19b87990530&rating=1-{}","service":"request-logging"}
+{"level":"info","message":"/api/products/rate?productID=65eaefb3fc40f19b87990530&rating=1-{}","service":"request-logging"}

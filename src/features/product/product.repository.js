@@ -1,11 +1,13 @@
 import { ObjectId } from "mongodb";
 import { getDB } from "../../config/mongodb.js";
 import { ApplicationError } from "../../error-handler/applicationError.js";
+import UserRepository from "../user/user.repository.js";
 
 
 class ProductRepository {
   constructor() {
     this.collection = "products";
+    this.userRepository = new UserRepository();
   }
 
   async add(newProduct) {
@@ -71,6 +73,24 @@ class ProductRepository {
     } catch (error) {
         console.log(error);
         throw new ApplicationError("Something went wrong while filtering the data", 500)
+    }
+  }
+
+  async rateProduct(userID, productID, rating){
+    try {
+        const db = getDB();
+        const collection = db.collection(this.collection);
+        collection.updateOne({
+            _id: new ObjectId(productID)
+        },{
+            $push : {rating : {userID, rating}}
+        })
+    } catch (error) {
+        console.log(error);
+        throw new ApplicationError(
+            "Something went wrong while Rating product",
+            500
+        );
     }
   }
 }
