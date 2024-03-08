@@ -12,20 +12,20 @@ export default class ProductModel {
     this.sizes = sizes;
   }
 
-  static add(product) {
-    product.id = products.length + 1;
-    products.push(product);
-    return product;
-  }
+  // static add(product) {
+  //   product.id = products.length + 1;
+  //   products.push(product);
+  //   return product;
+  // }
 
-  static getOne(id) {
-    const product = products.find((product) => product.id == id);
-    return product;
-  }
+  // static getOne(id) {
+  //   const product = products.find((product) => product.id == id);
+  //   return product;
+  // }
 
-  static getAll() {
-    return products;
-  }
+  // static getAll() {
+  //   return products;
+  // }
 
   static filter(minPrice, maxPrice, category) {
     const result = products.filter(
