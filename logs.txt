@@ -55,3 +55,13 @@
 {"level":"info","message":"/api/products/filter?minPrice=20000&maxPrice=100000000000&category=phone-{}","service":"request-logging"}
 {"level":"info","message":"/api/products/filter?minPrice=20000&maxPrice=100000000000&category=phone-{}","service":"request-logging"}
 {"level":"info","message":"/api/products/filter?minPrice=20000&maxPrice=100000000000&category=phone-{}","service":"request-logging"}
+{"level":"info","message":"/api/products/filter?minPrice=20000&maxPrice=100000000000&category=phone-{}","service":"request-logging"}
+{"level":"info","message":"/api/products/filter?minPrice=20000&maxPrice=100000000000&category=phones-{}","service":"request-logging"}
+{"level":"info","message":"/api/products/filter?minPrice=20000&maxPrice=90000&category=phones-{}","service":"request-logging"}
+{"level":"info","message":"/api/products/filter?minPrice=20000&category=phones-{}","service":"request-logging"}
+{"level":"info","message":"/api/products/filter?minPrice=20000&maxPrice=90000-{}","service":"request-logging"}
+{"level":"info","message":"/api/products/filter?maxPrice=90000-{}","service":"request-logging"}
+{"level":"info","message":"/api/products/filter?minPrice=20000&maxPrice=90000&category=phones-{}","service":"request-logging"}
+{"level":"info","message":"/api/products-{}","service":"request-logging"}
+{"level":"info","message":"/api/products-{}","service":"request-logging"}
+{"level":"info","message":"/api/products/filter?minPrice=20000&maxPrice=90000&category=phones-{}","service":"request-logging"}

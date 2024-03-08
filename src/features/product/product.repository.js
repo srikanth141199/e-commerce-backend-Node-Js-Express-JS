@@ -62,7 +62,7 @@ class ProductRepository {
         filterExpression.price = { $gte: parseFloat(minPrice) };
       }
       if (maxPrice) {
-        filterExpression.price = { $lte: parseFloat(maxPrice) };
+        filterExpression.price = {...filterExpression.price, $lte: parseFloat(maxPrice) };
       }
       if (category) {
         filterExpression.category = category;
