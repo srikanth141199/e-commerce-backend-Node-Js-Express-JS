@@ -15,15 +15,15 @@ const productController = new ProductController();
 //localhost:3200/api/products/filter?minPrice=10&maxPrice=25&category=Category2
 productRouter.get('/filter', productController.filterProducts);
 
-productRouter.get("/", productController.getAllProducts);
+productRouter.get("/", (req, res) => {productController.getAllProducts(req, res)});
 
 productRouter.post(
   "/",
   upload.single("imageUrl"),
-  productController.addProduct
+  (req, res) => { productController.addProduct(req, res)}
 );
 
-productRouter.get("/:id", productController.getOneProduct);
+productRouter.get("/:id", (req, res) => {productController.getOneProduct(req, res)});
 
 productRouter.post("/rate", productController.rateProduct);
 

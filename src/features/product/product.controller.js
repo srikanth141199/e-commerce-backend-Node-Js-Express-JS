@@ -1,31 +1,52 @@
+import { ApplicationError } from "../../error-handler/applicationError.js";
 import ProductModel from "./product.model.js";
+import ProductRepository from "./product.repository.js";
 
 export default class ProductController {
-  getAllProducts(req, res) {
-    const products = ProductModel.getAll();
-    res.status(200).send(products);
+
+  constructor(){
+    this.productRepository = new ProductRepository();
   }
 
-  addProduct(req, res) {
-    const { name, price, sizes } = req.body;
-    const newProduct = {
-      name,
-      price: parseFloat(price),
-      sizes: sizes.split(","),
-      imageUrl: req.file.filename,
-    };
-    const createdRecord = ProductModel.add(newProduct);
-    res.status(201).send(createdRecord);
-  }
-
-  getOneProduct(req, res) {
-    const id = req.params.id;
-    const product = ProductModel.getOne(id);
-    if (!product) {
-      res.status(404).send("Product not found");
-    } else {
-      res.status(200).send(product);
+  async getAllProducts(req, res) {
+    try {
+      const products = await this.productRepository.getAll();
+      res.status(200).send(products);
+      
+    } catch (error) {
+      console.log(error);
+      throw new ApplicationError("Something went wrong while fetching Products.", 500);
     }
+    
+  }
+
+  async addProduct(req, res) {
+    try {
+      const { name, price, sizes, category } = req.body;
+      const newProduct = new ProductModel(name, null,  parseFloat(price), req.file.filename, category, sizes.split(","), );
+      const createdRecord = await this.productRepository.add(newProduct);
+      res.status(201).send(createdRecord);
+    } catch (error) {
+      console.log(error);
+      throw new ApplicationError("Something went wrong while adding product in controller", 500);
+    }
+    
+  }
+
+  async getOneProduct(req, res) {
+    try {
+      const id = req.params.id;
+      const product = await this.productRepository.getOne(id);
+      if (!product) {
+        res.status(404).send("Product not found");
+      } else {
+        res.status(200).send(product);
+      }
+    } catch (error) {
+      console.log(error);
+      throw new ApplicationError("Something went wrong while fetching the Product", 500);
+    }
+    
   }
 
   filterProducts(req, res) {

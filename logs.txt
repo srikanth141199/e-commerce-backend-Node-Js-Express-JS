@@ -40,3 +40,12 @@
 {"level":"info","message":"/api/users/signUp-{\"name\":\"Surya\",\"email\":\"surya@ecom.com\",\"password\":\"Surya\",\"type\":\"customer\"}","service":"request-logging"}
 {"level":"info","message":"/api/users/signUp-{\"name\":\"Subbu\",\"email\":\"subbu@ecom.com\",\"password\":\"subbu\",\"type\":\"customer\"}","service":"request-logging"}
 {"level":"info","message":"/api/users/signUp-{\"name\":\"Ram\",\"email\":\"ram@ecom.com\",\"password\":\"ram\",\"type\":\"seller\"}","service":"request-logging"}
+{"level":"info","message":"/api/products-{\"email\":\"srikanth@ecom.com\",\"password\":\"Sri\"}","service":"request-logging"}
+{"level":"info","message":"/api/products-{}","service":"request-logging"}
+{"level":"info","message":"/api/products-{}","service":"request-logging"}
+{"level":"info","message":"/api/products-{}","service":"request-logging"}
+{"level":"info","message":"/api/products-{}","service":"request-logging"}
+{"level":"info","message":"/api/products-{}","service":"request-logging"}
+{"level":"info","message":"/api/products-{}","service":"request-logging"}
+{"level":"info","message":"/api/products/65eaef245d24481ce74b03dc-{}","service":"request-logging"}
+{"level":"info","message":"/api/products/65eaef245d24481ce74b03dc-{}","service":"request-logging"}
