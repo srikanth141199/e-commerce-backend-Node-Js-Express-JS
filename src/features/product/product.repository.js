@@ -64,33 +64,92 @@ class ProductRepository {
         filterExpression.price = { $gte: parseFloat(minPrice) };
       }
       if (maxPrice) {
-        filterExpression.price = {...filterExpression.price, $lte: parseFloat(maxPrice) };
+        filterExpression.price = {
+          ...filterExpression.price,
+          $lte: parseFloat(maxPrice),
+        };
       }
       if (category) {
         filterExpression.category = category;
       }
       return collection.find(filterExpression).toArray();
     } catch (error) {
-        console.log(error);
-        throw new ApplicationError("Something went wrong while filtering the data", 500)
+      console.log(error);
+      throw new ApplicationError(
+        "Something went wrong while filtering the data",
+        500
+      );
     }
   }
 
-  async rateProduct(userID, productID, rating){
+  // async rateProduct(userID, productID, rating) {
+  //   try {
+  //     const db = getDB();
+  //     const collection = db.collection(this.collection);
+  //     const product = await collection.findOne({
+  //       _id: new ObjectId(productID),
+  //     });
+  //     const userRating = product?.ratings?.find(
+  //       (rate) => rate.userID == userID
+  //     );
+  //     if (userRating) {
+  //       await collection.updateOne(
+  //         {
+  //           _id: new ObjectId(productID),
+  //           "ratings.userID": userID,
+  //         },
+  //         { $set: { "ratings.$.rating": rating } }
+  //       );
+  //     } else {
+  //       await collection.updateOne(
+  //         {
+  //           _id: new ObjectId(productID),
+  //         },
+  //         {
+  //           $push: { ratings: { userID, rating } },
+  //         }
+  //       );
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //     throw new ApplicationError(
+  //       "Something went wrong while Rating product",
+  //       500
+  //     );
+  //   }
+  // }
+  
+  //below is the simplified method on how we can handle rate Product
+  async rateProduct(userID, productID, rating) {
     try {
-        const db = getDB();
-        const collection = db.collection(this.collection);
-        collection.updateOne({
-            _id: new ObjectId(productID)
-        },{
-            $push : {rating : {userID, rating}}
-        })
+      const db = getDB();
+      const collection = db.collection(this.collection);
+
+      //Removing existing operation
+      await collection.updateOne(
+      {
+        _id: new ObjectId(productID),
+      },
+      {
+        $pull: { ratings: { userID: new ObjectId(userID) } },
+      }
+    );
+      //updating new operation
+      await collection.updateOne(
+        {
+          _id: new ObjectId(productID),
+        },
+        {
+          $push: { ratings: { userID:new ObjectId(userID), rating } },
+        }
+      );
+      
     } catch (error) {
-        console.log(error);
-        throw new ApplicationError(
-            "Something went wrong while Rating product",
-            500
-        );
+      console.log(error);
+      throw new ApplicationError(
+        "Something went wrong while Rating product",
+        500
+      );
     }
   }
 }
