@@ -52,10 +52,10 @@ export default class ProductController {
   async filterProducts(req, res) {
     try {
       const minPrice = req.query.minPrice;
-      const maxPrice = req.query.maxPrice;
-      const category = req.query.category;
+      //const maxPrice = req.query.maxPrice;
+      const categories = req.query.categories;
 
-      const result = await this.productRepository.filter(minPrice, maxPrice, category);
+      const result = await this.productRepository.filter(minPrice, categories);
       if (!result) {
         res.status(404).send("No products found");
       } else {
