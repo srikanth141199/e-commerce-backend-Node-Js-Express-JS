@@ -4,3 +4,29 @@ Add a product
 Get one product
 Rate product.
 Filter Product
+
+
+db.products.aggregate([
+    {
+        $unwind:"$ratings"
+    },
+    {
+        $group{
+            _id:"name",
+            averageRating:{$avg:"$ratings.rating"}
+        }
+    }
+])
+
+
+//to make a column as document and group them and five the average
+db.products.aggregate([{$unwind:"$ratings"},{$group:{_id:"$name",averageRating:{$avg:"$ratings.rating"}}}])
+
+//to write a if/else condition and get an array of number of counts in a collects for each document
+ db.products.aggregate([{$project:{name:1, countOfRating:{$cond:{if:{$isArray:"$ratings"}, then:{$size:"$ratings"}, else:0}}}}])
+
+//to sort above result:
+db.products.aggregate([{$project:{name:1, countOfRating:{$cond:{if:{$isArray:"$ratings"}, then:{$size:"$ratings"}, else:0}}}},{$sort:{countOfRating:-1}}])
+
+//to get number of objects for above:
+db.products.aggregate([{$project:{name:1, countOfRating:{$cond:{if:{$isArray:"$ratings"}, then:{$size:"$ratings"}, else:0}}}},{$sort:{countOfRating:-1}},{$limit:1}])
