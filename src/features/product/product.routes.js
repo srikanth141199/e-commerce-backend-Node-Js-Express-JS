@@ -23,8 +23,11 @@ productRouter.post(
   (req, res) => { productController.addProduct(req, res)}
 );
 
+productRouter.post("/rate", (req, res, next) => {productController.rateProduct(req, res, next)});
+
+productRouter.get("/averagePrice", (req, res, next) => {productController.averagePrice(req, res, next)});
+
 productRouter.get("/:id", (req, res) => {productController.getOneProduct(req, res)});
 
-productRouter.post("/rate", (req, res, next) => {productController.rateProduct(req, res, next)});
 
 export default productRouter;

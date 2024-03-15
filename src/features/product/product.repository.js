@@ -70,13 +70,20 @@ class ProductRepository {
       //   };
       // }
       //console.log(categories);
-      categories = JSON.parse(categories.replace(/'/g,'"'));
+      categories = JSON.parse(categories.replace(/'/g, '"'));
       if (categories) {
         //filterExpression = {$and:[{category:category}, filterExpression]};//both of the expression to br true to get result.
-        filterExpression = {$or:[{category:{$in:categories}}, filterExpression]};//even if one of the expression is true we will get the data.
+        filterExpression = {
+          $or: [{ category: { $in: categories } }, filterExpression],
+        }; //even if one of the expression is true we will get the data.
         //filterExpression.category = category;
       }
-      return collection.find(filterExpression).toArray();
+
+      //product will filter and give details only for the one included "1" will include them and "0" will exclude them.
+      return collection
+        .find(filterExpression)
+        .project({ name: 1, price: 1, _id: 0, ratings: { $slice: 1 } })
+        .toArray();
     } catch (error) {
       console.log(error);
       throw new ApplicationError(
@@ -122,7 +129,7 @@ class ProductRepository {
   //     );
   //   }
   // }
-  
+
   //below is the simplified method on how we can handle rate Product
   async rateProduct(userID, productID, rating) {
     try {
@@ -131,27 +138,51 @@ class ProductRepository {
 
       //Removing existing operation
       await collection.updateOne(
-      {
-        _id: new ObjectId(productID),
-      },
-      {
-        $pull: { ratings: { userID: new ObjectId(userID) } },
-      }
-    );
+        {
+          _id: new ObjectId(productID),
+        },
+        {
+          $pull: { ratings: { userID: new ObjectId(userID) } },
+        }
+      );
       //updating new operation
       await collection.updateOne(
         {
           _id: new ObjectId(productID),
         },
         {
-          $push: { ratings: { userID:new ObjectId(userID), rating } },
+          $push: { ratings: { userID: new ObjectId(userID), rating } },
         }
       );
-      
     } catch (error) {
       console.log(error);
       throw new ApplicationError(
         "Something went wrong while Rating product",
+        500
+      );
+    }
+  }
+
+  async averageProductPricePerCategory() {
+    try {
+      const db = getDB();
+      const result = await db
+        .collection(this.collection)
+        .aggregate([
+          {
+            $group: {
+              _id: "$category",
+              averagePrice: { $avg: "$price" },
+            },
+          },
+        ])
+        .toArray();
+
+      return result;
+    } catch (error) {
+      console.log(error);
+      throw new ApplicationError(
+        "Something went wrong while getting Average product Price",
         500
       );
     }

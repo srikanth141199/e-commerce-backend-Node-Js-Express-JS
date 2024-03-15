@@ -89,4 +89,15 @@ export default class ProductController {
     //     return res.status(201).send("Rating has been added");
     // }
   }
+
+  async averagePrice(req, res, next){
+    try {
+      const result = await this.productRepository.averageProductPricePerCategory()
+      console.log("result"+result);
+      res.status(200).send(result);
+    } catch (error) {
+      console.log(error);
+      throw new ApplicationError("Something went wrong while filtering Products in controller", 500);
+    }
+  }
 }
