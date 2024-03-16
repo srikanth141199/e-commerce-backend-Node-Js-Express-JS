@@ -1,43 +1,47 @@
-import { getDB } from "../../config/mongodb.js";
+import mongoose from "mongoose";
+import { userScheme } from "./user.schema.js";
 import { ApplicationError } from "../../error-handler/applicationError.js";
 
-class UserRepository {
-  async signUp(newUser) {
+//creating model from Schema
+const UserModel = mongoose.model("User", userScheme);
+
+export default class UserRepository {
+  async signUp(user) {
     try {
-      const db = getDB();
-      const collection = db.collection("users");
-      await collection.insertOne(newUser);
+      //create a instance of model. this is basically a constructor of a model from which we can get a Document of a collection.
+      const newUser = new UserModel(user);
+      await newUser.save(); //this saves the document
       return newUser;
     } catch (error) {
-      throw new ApplicationError("Something went wrong ith database", 500);
+      console.log(error);
+      throw new ApplicationError(
+        "Something went wrong in Repo while signUp",
+        500
+      );
     }
-
-    //const newUser = new UserModel(name, email, password, type);
-    // newUser.id = users.length + 1;
-    // users.push(newUser);
   }
 
-  async signInn(email, password) {
+  async signIn(email, password) {
     try {
-      const db = getDB();
-      const collection = db.collection("users");
-      return await collection.findOne({ email, password });
+      return await UserModel.findOne({ email, password });
     } catch (error) {
       console.log(error);
-      throw new ApplicationError("Something went wrong with SignInn", 500);
+      throw new ApplicationError(
+        "Something went wrong in Repo while signUp",
+        500
+      );
     }
   }
 
   async findByEmail(email) {
     try {
-      const db = getDB();
-      const collection = db.collection("users");
-      return await collection.findOne({ email });
+      return await UserModel.findOne({ email });
     } catch (error) {
       console.log(error);
-      throw new ApplicationError("Something went wrong with Find By Email", 500);
+      throw new ApplicationError(
+        "Something went wrong with Find By Email",
+        500
+      );
     }
   }
 }
-
-export default UserRepository;
