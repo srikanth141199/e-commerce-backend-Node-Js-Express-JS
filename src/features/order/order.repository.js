@@ -18,8 +18,12 @@ export default class OrderRepository{
             //console.log(finalTotalAmount);
 
             //2.create new Order
-            const orderModel = new OrderModel(new ObjectId(userId), finalTotalAmount, new Date());
+            const newOrder = new OrderModel(new ObjectId(userId), finalTotalAmount, new Date());
+            await db.collection(this.collection).insertOne(newOrder);
 
+            //3.Reduce the Stock.
+
+            //4.Clear the cart Items
 
         } catch (error) {
             console.log(error);
