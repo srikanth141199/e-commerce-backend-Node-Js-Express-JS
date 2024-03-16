@@ -22,7 +22,15 @@ export default class OrderRepository{
             await db.collection(this.collection).insertOne(newOrder);
 
             //3.Reduce the Stock.
-
+            //stock field is not maintained so ran a query below to add 20 for all the products
+            //db.products.updateMany({},{$set:{stock:20}})
+            //above query will add 20 in stock for all the products.
+            for(let item of items){
+                await db.collection("products").updateOne(
+                    {_id:"productID"},
+                    {$inc:{stock: -item.quantity}}
+                )
+            }
             //4.Clear the cart Items
 
         } catch (error) {
