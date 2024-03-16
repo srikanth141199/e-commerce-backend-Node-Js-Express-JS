@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-import { getDB } from "../../config/mongodb.js";
+import { getDB, getClient } from "../../config/mongodb.js";
 import { ApplicationError } from "../../error-handler/applicationError.js";
 import OrderModel from "./order.model.js";
 
@@ -9,17 +9,19 @@ export default class OrderRepository{
     }
 
     async placeOrders(userId){
-        try {
-
+        const client = getClient();
+        const session = client.startSession();
+        try {    
             const db =  getDB();
+            session.startTransaction();
             //1.Get cartItems and calculate total Amount.
-            const items = await this.getTotalAmount(userId);
+            const items = await this.getTotalAmount(userId, session);
             const finalTotalAmount = items.reduce((acc, item) => acc+item.totalAmount, 0);
             //console.log(finalTotalAmount);
 
             //2.create new Order
             const newOrder = new OrderModel(new ObjectId(userId), finalTotalAmount, new Date());
-            await db.collection(this.collection).insertOne(newOrder);
+            await db.collection(this.collection).insertOne(newOrder, {session});
 
             //3.Reduce the Stock.
             //stock field is not maintained so ran a query below to add 20 for all the products
@@ -27,19 +29,33 @@ export default class OrderRepository{
             //above query will add 20 in stock for all the products.
             for(let item of items){
                 await db.collection("products").updateOne(
-                    {_id:"productID"},
-                    {$inc:{stock: -item.quantity}}
+                    {_id: item.productID},
+                    {$inc:{stock: -item.quantity}},
+                    {session}
                 )
             }
-            //4.Clear the cart Items
+
+            //throw new ApplicationError("manually stopping the placeOrder", 500);
+            //here issue is even the one of the transaction fails it will affect the DB, so we need to create a replica DB and perform this actions using session
+            //for the same document is available in NodeJs Documents.
+            //point to remember while creating replica DB it takes time wait untill it is done then initiate mongosh in CMD
+
+
+            //4.Clear the cart of that user.
+            await db.collection("cartItems").deleteMany({userID:new ObjectId(userId)}, {session})
+            await session.commitTransaction();
+            session.endSession();
+            return;
 
         } catch (error) {
+            await session.abortTransaction();
+            session.endSession();
             console.log(error);
             throw new ApplicationError("Something wrong with Database", 500);
         }
     }
     // function to calculate the aggregated value of items present in cart
-    async getTotalAmount(userId){
+    async getTotalAmount(userId, session){
         const db = getDB();
         //console.log(userId);
         const items = await db.collection("cartItems").aggregate([
@@ -69,7 +85,7 @@ export default class OrderRepository{
                     }
                 }
             }
-        ]).toArray();
+        ], {session}).toArray();
         return items
         
     }

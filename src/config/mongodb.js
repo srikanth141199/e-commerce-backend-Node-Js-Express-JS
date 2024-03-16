@@ -14,6 +14,10 @@ export const connectToMongDB = () => {
   });
 };
 
+export const getClient = () => {
+  return client;
+}
+
 export const getDB = () => {
     return client.db();
 }
