@@ -218,3 +218,7 @@
 {"level":"info","message":"/api/orders/-{}","service":"request-logging"}
 {"level":"info","message":"/api/orders/-{}","service":"request-logging"}
 {"level":"info","message":"/api/orders/-{}","service":"request-logging"}
+{"level":"info","message":"/api/cartItems/-{\"productID\":\"65f52a79f362f9e3bff35eda\",\"quantity\":3}","service":"request-logging"}
+{"level":"info","message":"/api/cartItems/-{\"productID\":\"65eaef245d24481ce74b03dc\",\"quantity\":5}","service":"request-logging"}
+{"level":"info","message":"/api/cartItems/-{\"productID\":\"65eaefb3fc40f19b87990530\",\"quantity\":1}","service":"request-logging"}
+{"level":"info","message":"/api/orders/-{}","service":"request-logging"}
