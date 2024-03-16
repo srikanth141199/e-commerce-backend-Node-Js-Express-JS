@@ -10,7 +10,9 @@ export class CartItemsController {
   async add(req, res) {
     try{
       const { productID, quantity } = req.body;
-      const userID = req.userID;
+      const userID = req.body.userID;
+      //console.log("req.userID : "+req.userID);
+      //console.log("req.body.userID : "+req.body.userID);
       await this.cartItemsRepository.add(productID, userID, quantity);
       res.status(201).send('Cart is updated');
     }catch(err){
