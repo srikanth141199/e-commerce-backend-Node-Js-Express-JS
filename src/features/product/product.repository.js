@@ -5,9 +5,11 @@ import UserRepository from "../user/user.repository.js";
 import mongoose from "mongoose";
 import { productScheme } from "./product.schema.js";
 import { reviewSchema } from "./review.schema.js";
+import { categorySchema } from "./category.schema.js";
 
 const ProductModel = mongoose.model('Product', productScheme);
 const ReviewModel = mongoose.model('Review', reviewSchema);
+const CategoryModel = mongoose.model('Category', categorySchema);
 
 class ProductRepository {
   constructor() {
@@ -15,12 +17,20 @@ class ProductRepository {
     this.userRepository = new UserRepository();
   }
 
-  async add(newProduct) {
+  async add(productData) {
     try {
-      const db = getDB();
-      const collection = db.collection(this.collection);
-      await collection.insertOne(newProduct);
-      return newProduct;
+      // const db = getDB();
+      // const collection = db.collection(this.collection);
+      // await collection.insertOne(newProduct);
+      // return newProduct;
+      const newProduct = new ProductModel(productData);
+      const savedProduct = newProduct.save();
+
+      await CategoryModel.updateMany({_id:{$in: productData.categories}}, 
+        {
+          $push:{products: new ObjectId(savedProduct._id)}
+        })
+
     } catch (error) {
       console.log(error);
       throw new ApplicationError(
