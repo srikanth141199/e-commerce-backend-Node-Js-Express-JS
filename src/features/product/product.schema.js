@@ -12,6 +12,12 @@ export const productScheme = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref:'Review'
         }
+    ],
+    categories:[
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref:'Category'
+        }
     ]
     //sizes : {typeof: String, enum:['S', 'M', 'L', 'XL', 'XXL']}
 })
