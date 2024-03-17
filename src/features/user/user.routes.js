@@ -6,7 +6,7 @@ const userRouter = express.Router();
 
 const userController = new UserController();
 
-userRouter.post("/signUp", (req, res) => {userController.signUp(req, res)});
+userRouter.post("/signUp", (req, res, next) => {userController.signUp(req, res, next)});
 userRouter.post("/signIn", (req, res) => {userController.signIn(req, res)});
 userRouter.put('/resetPassword', jwtAuth, (req, res, next) => {userController.resetPassword(req, res, next)})
 

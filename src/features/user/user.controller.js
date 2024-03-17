@@ -10,16 +10,17 @@ export default class UserController {
     this.userRepository = new UserRepository();
   }
 
-  async signUp(req, res) {
+  async signUp(req, res, next) {
     try {
       const { name, email, password, type } = req.body;
-      const hashedPassword = await bcrypt.hash(password, 12)
-      const user = new UserModel(name, email, hashedPassword, type);
+      //const hashedPassword = await bcrypt.hash(password, 12)
+      const user = new UserModel(name, email, password, type);
       await this.userRepository.signUp(user)
       res.status(201).send(user);
     } catch (error) {
-      console.log(error);
-      throw new ApplicationError("Something went wrong in signUp Controller", 500)
+      next(error)
+      // console.log(error);
+      // throw new ApplicationError("Something went wrong in signUp Controller", 500)
     }
   }
 

@@ -32,10 +32,16 @@ export default class UserRepository {
       return newUser;
     } catch (error) {
       console.log(error);
-      throw new ApplicationError(
-        "Something went wrong in Repo while signUp",
-        500
-      );
+      if(error instanceof mongoose.Error.ValidationError){
+        throw error;
+      }
+      else{
+        console.log(error);
+        throw new ApplicationError(
+          "Something went wrong in Repo while signUp",
+          500
+        );
+      }
     }
   }
 
