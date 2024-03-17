@@ -2,7 +2,12 @@ import { ObjectId } from "mongodb";
 import { getDB } from "../../config/mongodb.js";
 import { ApplicationError } from "../../error-handler/applicationError.js";
 import UserRepository from "../user/user.repository.js";
+import mongoose from "mongoose";
+import { productScheme } from "./product.schema.js";
+import { reviewSchema } from "./review.schema.js";
 
+const ProductModel = mongoose.model('Product', productScheme);
+const ReviewModel = mongoose.model('Review', reviewSchema);
 
 class ProductRepository {
   constructor() {
@@ -133,27 +138,23 @@ class ProductRepository {
   //below is the simplified method on how we can handle rate Product
   async rateProduct(userID, productID, rating) {
     try {
-      const db = getDB();
-      const collection = db.collection(this.collection);
-
-      //Removing existing operation
-      await collection.updateOne(
-        {
-          _id: new ObjectId(productID),
-        },
-        {
-          $pull: { ratings: { userID: new ObjectId(userID) } },
-        }
-      );
-      //updating new operation
-      await collection.updateOne(
-        {
-          _id: new ObjectId(productID),
-        },
-        {
-          $push: { ratings: { userID: new ObjectId(userID), rating } },
-        }
-      );
+      const productToUpdate = await ProductModel.findById(productID);
+      if(!productToUpdate){
+        throw new Error("Product not Found");
+      }
+      const userReview = await ReviewModel.findOne({product : new ObjectId(productID), user: new ObjectId(userID)})
+      if(userReview){
+        userReview.rating = rating;
+        await userReview.save();
+      }
+      else{
+        const newReview = new ReviewModel({
+          product : new ObjectId(productID),
+          user: new ObjectId(userID),
+          rating : rating
+        })
+        newReview.save();
+      }
     } catch (error) {
       console.log(error);
       throw new ApplicationError(

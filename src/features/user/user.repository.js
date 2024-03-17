@@ -30,7 +30,9 @@ export default class UserRepository {
       const newUser = new UserModel(user);
       await newUser.save(); //this saves the document
       return newUser;
+
     } catch (error) {
+      
       console.log(error);
       if(error instanceof mongoose.Error.ValidationError){
         throw error;
