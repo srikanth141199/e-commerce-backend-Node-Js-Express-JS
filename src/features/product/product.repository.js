@@ -23,6 +23,7 @@ class ProductRepository {
       // const collection = db.collection(this.collection);
       // await collection.insertOne(newProduct);
       // return newProduct;
+      productData.categories = productData.category.split(',').map(e => e.trim());
       const newProduct = new ProductModel(productData);
       const savedProduct = newProduct.save();
 

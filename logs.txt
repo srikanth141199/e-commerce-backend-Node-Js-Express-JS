@@ -237,3 +237,6 @@
 {"level":"info","message":"/api/users/signUp-{\"name\":\"Pavan\",\"email\":\"Pavan@ecom.com\",\"password\":\"Pavan\",\"type\":\"Seller\"}","service":"request-logging"}
 {"level":"info","message":"/api/users/signUp-{\"name\":\"Pavan\",\"email\":\"Pavan@ecom.com\",\"password\":\"Pavan@123\",\"type\":\"Seller\"}","service":"request-logging"}
 {"level":"info","message":"/api/products/rate-{\"productID\":\"65f52a79f362f9e3bff35eda\",\"rating\":9.8}","service":"request-logging"}
+{"level":"info","message":"/api/products-{\"name\":\"Amazon Kindle\",\"price\":15000,\"description\":\"E-Book  reader by Amazon\",\"categories\":\"65f72aa7cc96b6fdcd922e26, 65f72aa7cc96b6fdcd922e28\"}","service":"request-logging"}
+{"level":"info","message":"/api/products-{\"name\":\"Amazon Kindle\",\"price\":15000,\"description\":\"E-Book  reader by Amazon\",\"categories\":\"65f72aa7cc96b6fdcd922e26, 65f72aa7cc96b6fdcd922e28\"}","service":"request-logging"}
+{"level":"info","message":"/api/products-{\"name\":\"Amazon Kindle\",\"price\":15000,\"description\":\"E-Book  reader by Amazon\",\"categories\":\"65f72aa7cc96b6fdcd922e26, 65f72aa7cc96b6fdcd922e28\"}","service":"request-logging"}
