@@ -21,6 +21,7 @@ import {connectToMongDB, getDB} from './src/config/mongodb.js';
 import orderRouter from "./src/features/order/order.routes.js";
 import { connectUsingMongoose } from "./src/config/mongooseConfig.js";
 import mongoose from "mongoose";
+import likeRouter from "./src/features/like/like.routes.js";
 
 // 2. Create Server
 const server = express();
@@ -58,6 +59,7 @@ server.use("/api/products",jwtAuth, productRouter);
 server.use("/api/users", userRouter);
 server.use("/api/cartItems", jwtAuth, cartRouter);
 server.use("/api/orders", jwtAuth, orderRouter);
+server.use("/api/likes", jwtAuth, likeRouter);
 
 // 3. Default request handler
 server.get('/', (req, res)=>{
