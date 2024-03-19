@@ -243,3 +243,6 @@
 {"level":"info","message":"/api/products-{\"name\":\"Amazon Kindle\",\"price\":15000,\"description\":\"E-Book  reader by Amazon\",\"categories\":\"65f72aa7cc96b6fdcd922e26, 65f72aa7cc96b6fdcd922e28\"}","service":"request-logging"}
 {"level":"info","message":"/api/likes-{\"type\":\"Product\",\"id\":\"65f52a79f362f9e3bff35eda\"}","service":"request-logging"}
 {"level":"info","message":"/api/likes-{\"type\":\"Product\",\"id\":\"65f52a79f362f9e3bff35eda\"}","service":"request-logging"}
+{"level":"info","message":"/api/likes?id=65f52a79f362f9e3bff35eda&type=Product-{}","service":"request-logging"}
+{"level":"info","message":"/api/likes-{\"type\":\"Product\",\"id\":\"65f52a79f362f9e3bff35eda\"}","service":"request-logging"}
+{"level":"info","message":"/api/likes-{\"type\":\"Product\",\"id\":\"65f84f47e97874dfcb46123c\"}","service":"request-logging"}
